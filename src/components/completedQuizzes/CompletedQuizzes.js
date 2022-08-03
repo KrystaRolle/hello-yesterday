@@ -79,6 +79,7 @@ export const CompletedQuizzes = () => {
 //}
 // user id matches conditional etc. display full quiz
 return (
+    <>
     <form className="ticketForm">
         <h2 className="ticketForm__title">Add Photo</h2>
         <fieldset>
@@ -100,4 +101,5 @@ return (
             </div>
         </fieldset>
         </form>
+        </>
         }
