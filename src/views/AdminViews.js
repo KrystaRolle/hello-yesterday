@@ -21,6 +21,7 @@ export const AdminViews = () => {
                     </div>
                     <button onClick={()=> navigate('/addphotos')}>Add Photos</button>   
                     <button onClick={()=> navigate('/deletephotos')}>Delete Photos</button> 
+                    <button onClick={() => navigate("/quizzes")}>Skip Tutorial</button>
                     <button onClick={() => navigate("/instructions")}>OK, Let's Start</button>
                     <Outlet />
                 </>

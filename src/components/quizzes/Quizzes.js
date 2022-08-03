@@ -31,8 +31,11 @@ export const Quizzes = () => {
 //only have it to where button can be pressed 5 times
 //each press has a use effect that saves that value to an array 
 
+//coult return an array of 5 photo objetcs, map, 
+
     const getRandomImgObject = (array) => {
         const randomObject = array[Math.floor(Math.random() * array.length)];
+
         return randomObject;
     };
 
@@ -66,11 +69,15 @@ export const Quizzes = () => {
     
         
         return <>
+    <h2>HelloYesterday</h2>
+    <div>What Year Was This?</div>
+        <>
+        <img src={randomImageObj?.imgLink} onClick={randomImageObj?.photoSummary} alt="photo" />
     {!toggle && (
     <div>
-    <h2>HelloYesterday</h2>
-        <div>What Year Was This?</div>
-        <img src={randomImageObj?.imgLink} onClick={randomImageObj?.photoSummary} alt="photo" />
+     
+        
+       
         
 
          <RangeSlider
@@ -82,6 +89,7 @@ export const Quizzes = () => {
         />
       </div>
       )}
+      </>
        {!toggle && (
       <button onClick={() => { setToggle(!toggle) }}>Submit</button>
       )}
@@ -107,8 +115,88 @@ export const Quizzes = () => {
     </>
 }
 
+//random object func* 5 push all those objects in to an array and return those 5 random obj
+//lable images with img1, img2, img, 3 etc
+//map function to get photos and year
+//display each photo.imglink with its own map function
+//then compare users slider value choice number with the obj number.yearTaken
+//display difference of each photo in the bottom toggle area
+//maybe make slider below to show the year.taken of each photo as preset in the slider
+//disable that slider
 
 
+//const [valueOne, setValueOne ] = useState(1975);
+//const [valueOne, setValueOne ] = useState(1975);
+//const [valueOne, setValueOne ] = useState(1975);
+//const [valueOne, setValueOne ] = useState(1975);
+//const [valueOne, setValueOne ] = useState(1975);
+
+// const getRandomImgObject = (array) => {
+    //arguments in use effect not in the function
+//     const randomObject = array[Math.floor(Math.random() * array.length)];
+//     const randomObject2 = array[Math.floor(Math.random() * array.length)];
+//     const randomObject3 = array[Math.floor(Math.random() * array.length)];
+//     const randomObject4 = array[Math.floor(Math.random() * array.length)];
+//     const randomObject5 = array[Math.floor(Math.random() * array.length)];
+//need 5 setrandom image object and set all of those with their own use effect/image variable
+//make function go 5 times
+//no array have 5 use effect that use each randomOBject# as argment
+//map 
+//handle refresh should call 5 new obj
+
+//     return randomObject;
+// };
+
+
+{/* <RangeSlider
+step={1.0}
+min={1850}
+max={2022}
+value={valueOne}
+onChange={e => setValue(e.target.value)}
+/> */}
+
+//const [valueTwo, setValueTwo ] = useState(1975);
+
+
+{/* <RangeSlider
+step={1.0}
+min={1850}
+max={2022}
+value={valueTwo}
+
+onChange={e => setValue(e.target.value)}
+/> */}
+
+
+{/* <RangeSlider
+step={1.0}
+min={1850}
+max={2022}
+value={valueThree}
+onChange={e => setValue(e.target.value)}
+/> */}
+
+//const [valueFour, setValueFour ] = useState(1975);
+
+{/* <RangeSlider
+step={1.0}
+min={1850}
+max={2022}
+value={valueFour}
+onChange={e => setValue(e.target.value)}
+/> */}
+
+//const [valueFive, setValueFive ] = useState(1975);
+
+
+{/* <RangeSlider
+step={1.0}
+min={1850}
+max={2022}
+value={valueFive}
+onChange={e => setValue(e.target.value)}
+/> */}
 
 
 //) => navigate("/results")

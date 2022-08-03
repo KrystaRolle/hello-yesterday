@@ -19,6 +19,7 @@ export const NonAdminViews = () => {
                     <div>
                         This quiz will test you on your history skills. Pick the year you think the event occured
                     </div>  
+                    <button onClick={() => navigate("/quizzes")}>Skip Tutorial</button>
                     <button onClick={() => navigate("/instructions")}>OK, Let's Start</button>
                     <Outlet />
                 </>
