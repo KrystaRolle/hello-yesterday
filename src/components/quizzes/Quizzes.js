@@ -7,9 +7,12 @@ import { Link } from "react-router-dom";
 export const Quizzes = () => {
    
     const [value, setValue ] = useState(1975);
-    
+    const [valueTwo, setValueTwo ]= useState(1975);
     const [images, setImages] = useState([])
+    const [imagesTwo, setImagesTwo] = useState([])
     const [randomImageObj, setRandomImageObj] = useState({})
+    const [randomImageObjTwo, setRandomImageObjTwo] = useState({})
+
     const [toggle, setToggle] = useState(false)
     const navigate = useNavigate()
     //use effect needs to be set to something to stop image from rerendering
@@ -38,6 +41,12 @@ export const Quizzes = () => {
         const randomObject = array[Math.floor(Math.random() * array.length)];
 
         return randomObject;
+    };
+
+    const getRandomImgObjectTwo = (array) => {
+        const randomObject = array[Math.floor(Math.random() * array.length)];
+
+        return randomObjectTwo;
     };
 
     useEffect(
@@ -127,7 +136,7 @@ export const Quizzes = () => {
 
 
 //const [valueOne, setValueOne ] = useState(1975);
-//const [valueOne, setValueOne ] = useState(1975);
+//const [valueTwo, setValueTwo ] = useState(1975);
 //const [valueOne, setValueOne ] = useState(1975);
 //const [valueOne, setValueOne ] = useState(1975);
 //const [valueOne, setValueOne ] = useState(1975);
