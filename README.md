@@ -68,3 +68,24 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+Introduction
+Purpose & motivation for project
+
+The motivation for this project is from my passion for technology. I wanted to create an app that makes learning about technology fun and educational. 
+
+How does the application work? (animations are always good)
+
+This application works like a standard quiz. It's linear in navigation. It starts with a login/register user page.
+Once authorized. The user can 
+
+How was the application developed?
+
+How to install and run the application
+npm start
+
+Difficulties & challenges faced during process.
+Public link (if exists)
+

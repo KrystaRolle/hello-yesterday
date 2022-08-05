@@ -1,5 +1,4 @@
 import { Outlet, Routes, Route } from "react-router-dom"
-import { Link } from "react-router-dom"
 import { Instructions } from "../components/instructions/Instructions"
 import { useNavigate } from "react-router-dom"
 //import { Choices } from "../components/scores/Choices"
@@ -31,3 +30,10 @@ export const NonAdminViews = () => {
         </>
     )
 }
+
+//useNavigate hook returns a function that lets you navigate through the program/changes the location
+//this is the "start page of the application"
+//outlet renders a child route
+//any component that's rendered by another component is a child/ component that renders is the parent
+// Route is the shown component when path matches the current URL
+// Link component works like HTML anchor tag

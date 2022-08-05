@@ -7,7 +7,7 @@ import { AdminDelete } from "../components/delete/AdminDelete"
 
 export const AdminViews = () => {
     const navigate = useNavigate()
-
+    
     return (
         <>
         <Routes>
@@ -29,6 +29,7 @@ export const AdminViews = () => {
             </Route>
             <Route path="deletephotos" element={<AdminDelete/>}/>
             <Route path="addphotos" element={<AddPhoto/>}/>
+            <Route path="/" element={<AdminViews />}/>
             <Route path="instructions" element={<Instructions />} />
             <Route path="quizzes" element={<Quizzes />} />
             </Routes>
@@ -36,4 +37,3 @@ export const AdminViews = () => {
     )
 }
 
-//admin shouldn't see instructions?

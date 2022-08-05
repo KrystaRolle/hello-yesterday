@@ -7,12 +7,14 @@ import { AdminViews } from "./AdminViews"
 //if being displayed
 //make sibling route (outside tags) if you want either to display independently  
 export const ApplicationViews = () => {
-    const localHoneyUser = localStorage.getItem('quiz_user')
-    const honeyUserObject = JSON.parse(localHoneyUser)
-   if (honeyUserObject.staff) {
+    const localQuizUser = localStorage.getItem('quiz_user')
+    const quizUserObject = JSON.parse(localQuizUser)
+   if (quizUserObject.staff) {
     return <AdminViews/>
    }
    else {
     return <NonAdminViews/>
    }
 }
+
+//checks the quiz user object to see if they are staff or not to determine the view of the user

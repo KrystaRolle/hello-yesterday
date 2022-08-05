@@ -9,7 +9,6 @@ export const AddPhoto = () => {
     */
     const [photos, setPhotos] = useState([])
 
-
     useEffect(
         () => {
             fetch(`http://localhost:8088/photos`)
@@ -23,15 +22,6 @@ export const AddPhoto = () => {
         []
     )
 
-    // useEffect(
-    //     () => {
-    //         getAllPhotos()
-    //     },
-    //     []
-    // )
-
-    //honey raes claming tickets around 5 min mark
-
     const [newPhoto, update] = useState({
         "photoName": "",
         "imgLink": "",
@@ -44,8 +34,8 @@ export const AddPhoto = () => {
         the user to the newPhoto list
     */
     const navigate = useNavigate()
-    const localHoneyUser = localStorage.getItem("quiz_user")
-    const honeyUserObject = JSON.parse(localHoneyUser)
+    //const localQuizUser = localStorage.getItem("quiz_user")
+    //const quizUserObject = JSON.parse(localQuizUser)
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -71,11 +61,19 @@ export const AddPhoto = () => {
             .then(response => response.json())
             .then(() => {
                 navigate('/addphotos')
+                getAllPhotos()
                 // TODO: Perform the fetch() to POST the object to the API
             })
     }
 
-    
+    const getAllPhotos = () => {
+        fetch(`http://localhost:8088/photos`)
+        .then(response => response.json())
+        .then((photoArr) => 
+            setPhotos(photoArr)
+            // console.log("Initial state of tickets", tickets) // View the initial state of tickets
+        )
+    }
 
 // const deletePhoto = () => {
 // deletePhoto(photo.id)
@@ -185,6 +183,8 @@ return (
             className="btn btn-primary">
             Submit Photo
         </button>
+        <button onClick={()=> navigate('/')} className="btn btn-primary">Back To Start</button>   
+
 
         <article>
             {
@@ -200,6 +200,5 @@ return (
     </form>
 )
 }
-//<button onClick={deletePhotos()}>Delete</button>
 
 
