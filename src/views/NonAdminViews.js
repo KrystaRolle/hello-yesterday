@@ -11,7 +11,6 @@ export const NonAdminViews = () => {
     return (
         <>
         <Routes>
-           
             <Route path="/" element={
                 <>
                     <h1>HelloYesterday</h1>

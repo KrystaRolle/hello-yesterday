@@ -5,8 +5,6 @@ import { HelloYesterday } from './components/helloYesterday.js/HelloYesterday';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom"
 import { ApplicationViews } from './views/ApplicationViews';
-import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
-import 'bootstrap/dist/css/bootstrap.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
-
+import { useNavigate } from "react-router-dom"
 export const AdminDelete = () => {
     const [photos, setPhotos] = useState([])
-
+    const navigate = useNavigate()
     useEffect(
         () => {
             fetch(`http://localhost:8088/photos`)
@@ -18,11 +18,11 @@ export const AdminDelete = () => {
 
     const getAllPhotos = () => {
         fetch(`http://localhost:8088/photos`)
-        .then(response => response.json())
-        .then((photoArr) => 
-            setPhotos(photoArr)
-            // console.log("Initial state of tickets", tickets) // View the initial state of tickets
-        )
+            .then(response => response.json())
+            .then((photoArr) =>
+                setPhotos(photoArr)
+                // console.log("Initial state of tickets", tickets) // View the initial state of tickets
+            )
     }
 
 
@@ -30,10 +30,7 @@ export const AdminDelete = () => {
         fetch(`http://localhost:8088/photos/${id}`, {
             method: 'DELETE',
         })
-            .then(
-                    getAllPhotos()
-                
-            )
+            .then(getAllPhotos)
     }
 
     return (
@@ -46,14 +43,15 @@ export const AdminDelete = () => {
                             return <>
                                 <section className='photo'>
                                     <img src={photo?.imgLink} key={i} />
-                                    
-                                    <button onClick={() => { deletePhoto(photo.id) }}>Delete</button>
+
+                                    <button onClick={() => { deletePhoto(photo.id) }} className="btn btn-primary">Delete</button>
                                 </section>
                             </>
                         }
                     )
                 }
-            </article>
+        </article>
+                <button onClick={() => navigate('/')} className="btn btn-primary">Back To Start Page</button>
         </>
     )
 }
