@@ -50,8 +50,8 @@ export const AdminDelete = () => {
                         }
                     )
                 }
-                <button onClick={() => navigate('/')} className="btn btn-primary">Back To Start Page</button>
         </article>
+                <button onClick={() => navigate('/')} className="btn btn-primary">Back To Start Page</button>
         </>
     )
 }
