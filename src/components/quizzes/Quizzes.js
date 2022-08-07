@@ -99,6 +99,10 @@ export const Quizzes = () => {
             })
     }
 
+    //function that takes current value onCLICK save that new value in array in a conditional
+    //once 5 values, set this to a value selection state, once this is set
+    //use effect for that value selection state, get average, display
+
     useEffect(
         () => {
             handleSaveButtonClick()
@@ -333,6 +337,20 @@ export const Quizzes = () => {
         )}
     </>
 }
+
+
+//function should already have the five photos
+//make photos appear one at a time
+//one photo
+//one slider
+//on each button slick it triggers a function that pushes the value into array
+//and another function that displays the next photo
+//conditional that only accepts 5 values.
+//once this condition meets the 5 values insert toggle switch 
+//return this array 
+//display all photos with their information, and display the 5 values
+//button takes you to see past scores with an option to play again
+
 
 //can't get the same object twice
 //can't delete more then 5 photos
