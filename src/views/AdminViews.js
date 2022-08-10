@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { Quizzes } from "../components/quizzes/Quizzes"
 import { AddPhoto } from "../components/addPhotos/AdminAddPhotos"
 import { AdminDelete } from "../components/delete/AdminDelete"
-import { Quizly } from "../components/quizzes/QuizTesting"
+import { PastScores } from "../components/pastScores/PastScores"
+
 export const AdminViews = () => {
     const navigate = useNavigate()
     
@@ -32,7 +33,7 @@ export const AdminViews = () => {
             <Route path="/" element={<AdminViews />}/>
             <Route path="instructions" element={<Instructions />} />
             <Route path="quizzes" element={<Quizzes />} />
-            <Route path="quizzes" element={<Quizly />} />
+            <Route path="pastscores" element={<PastScores />} />
             </Routes>
         </>
     )
