@@ -27,11 +27,12 @@ export const AdminDelete = () => {
 
 
     function deletePhoto(id) {
+        if (photos.length > 5) {
         fetch(`http://localhost:8088/photos/${id}`, {
             method: 'DELETE',
         })
             .then(getAllPhotos)
-    }
+    }}
 
     return (
         <>

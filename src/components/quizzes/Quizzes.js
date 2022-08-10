@@ -1,3 +1,76 @@
+
+
+//function should already have the five photos
+//make photos appear one at a time
+//one photo
+//one slider
+//on each button slick it triggers a function that pushes the value into array
+//and another function that displays the next photo
+//conditional that only accepts 5 values.
+//once this condition meets the 5 values insert toggle switch 
+//return this array 
+//display all photos with their information, and display the 5 values
+//button takes you to see past scores with an option to play again
+
+//value, set value
+//on 1st click function
+// 2 things happen. value is saved and pushed into array
+//next photo displayed (function)
+
+//long if else statement
+//set all images with a state
+//if 
+
+
+
+//can't get the same object twice
+//can't delete more then 5 photos
+//if array.length is >= 5 then
+
+  // useEffect(
+    //     () => {
+    //         getAllQuizzes()
+    //     },
+    //     [toggle]
+    // )
+
+    // const getAllQuizzes = () => {
+    //     fetch(`http://localhost:8088/completedQuizzes`)
+    //     .then(response => response.json())
+    //     .then((quiz) => 
+    //         setQuizzes(quiz)
+    //         // console.log("Initial state of tickets", tickets) // View the initial state of tickets
+    //     )
+    // }
+
+//random object func* 5 push all those objects in to an array and return those 5 random obj
+//lable images with img1, img2, img, 3 etc
+//map function to get photos and year
+//display each photo.imglink with its own map function
+//then compare users slider value choice number with the obj number.yearTaken
+//display difference of each photo in the bottom toggle area
+//maybe make slider below to show the year.taken of each photo as preset in the slider
+//disable that slider
+
+//i can make a seperate images component to randomize photos,
+//instead of rendering the whole page, i only render the photo
+//when button is clicked, the value is pushed into an array, etc.
+
+//have an array to hold values for the 5 submits
+//with every click of button 
+//push value of slider into that array
+//do an array method that adds all of those values together
+//score will then be on results page
+
+// images here to get date of image
+// //make sure that they do not repeat with array method
+// //create a getRandomImgObject, 1 ,2 3, 4, 5 and set them all invidually 
+// //find out how to rerender different element in others place
+// // have values for each object and slider 
+// //or
+// //only have it to where button can be pressed 5 times
+// //each press has a use effect that saves that value to an array 
+
 import { useNavigate } from "react-router-dom"
 import React from "react"
 import RangeSlider from 'react-bootstrap-range-slider';
@@ -337,67 +410,4 @@ export const Quizzes = () => {
         )}
     </>
 }
-
-
-//function should already have the five photos
-//make photos appear one at a time
-//one photo
-//one slider
-//on each button slick it triggers a function that pushes the value into array
-//and another function that displays the next photo
-//conditional that only accepts 5 values.
-//once this condition meets the 5 values insert toggle switch 
-//return this array 
-//display all photos with their information, and display the 5 values
-//button takes you to see past scores with an option to play again
-
-
-//can't get the same object twice
-//can't delete more then 5 photos
-//if array.length is >= 5 then
-
-  // useEffect(
-    //     () => {
-    //         getAllQuizzes()
-    //     },
-    //     [toggle]
-    // )
-
-    // const getAllQuizzes = () => {
-    //     fetch(`http://localhost:8088/completedQuizzes`)
-    //     .then(response => response.json())
-    //     .then((quiz) => 
-    //         setQuizzes(quiz)
-    //         // console.log("Initial state of tickets", tickets) // View the initial state of tickets
-    //     )
-    // }
-
-//random object func* 5 push all those objects in to an array and return those 5 random obj
-//lable images with img1, img2, img, 3 etc
-//map function to get photos and year
-//display each photo.imglink with its own map function
-//then compare users slider value choice number with the obj number.yearTaken
-//display difference of each photo in the bottom toggle area
-//maybe make slider below to show the year.taken of each photo as preset in the slider
-//disable that slider
-
-//i can make a seperate images component to randomize photos,
-//instead of rendering the whole page, i only render the photo
-//when button is clicked, the value is pushed into an array, etc.
-
-//have an array to hold values for the 5 submits
-//with every click of button 
-//push value of slider into that array
-//do an array method that adds all of those values together
-//score will then be on results page
-
-// images here to get date of image
-// //make sure that they do not repeat with array method
-// //create a getRandomImgObject, 1 ,2 3, 4, 5 and set them all invidually 
-// //find out how to rerender different element in others place
-// // have values for each object and slider 
-// //or
-// //only have it to where button can be pressed 5 times
-// //each press has a use effect that saves that value to an array 
-
 // //coult return an array of 5 photo objetcs, map, 
