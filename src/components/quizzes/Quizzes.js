@@ -27,21 +27,21 @@
 //can't delete more then 5 photos
 //if array.length is >= 5 then
 
-  // useEffect(
-    //     () => {
-    //         getAllQuizzes()
-    //     },
-    //     [toggle]
-    // )
+// useEffect(
+//     () => {
+//         getAllQuizzes()
+//     },
+//     [toggle]
+// )
 
-    // const getAllQuizzes = () => {
-    //     fetch(`http://localhost:8088/completedQuizzes`)
-    //     .then(response => response.json())
-    //     .then((quiz) => 
-    //         setQuizzes(quiz)
-    //         // console.log("Initial state of tickets", tickets) // View the initial state of tickets
-    //     )
-    // }
+// const getAllQuizzes = () => {
+//     fetch(`http://localhost:8088/completedQuizzes`)
+//     .then(response => response.json())
+//     .then((quiz) => 
+//         setQuizzes(quiz)
+//         // console.log("Initial state of tickets", tickets) // View the initial state of tickets
+//     )
+// }
 
 //random object func* 5 push all those objects in to an array and return those 5 random obj
 //lable images with img1, img2, img, 3 etc
@@ -96,15 +96,19 @@ export const Quizzes = () => {
     const [toggle, setToggle] = useState(false)
     //initial state of average score
     const [average, setAverage] = useState(0)
+    const [save, setSave] = useState(false)
+    const [count, setCount] = useState(0)
+    const [userChoice, setUserChoice] = useState(0)
+
     //initial state of quizzes
-    const [quizzes, setQuizzes] = useState([])
+    //const [quizzes, setQuizzes] = useState([])
     //initial state of users past scores
-    const [userPastScores, setUserPastScores] = useState([])
+    //const [userPastScores, setUserPastScores] = useState([])
     //
     const localQuizUser = localStorage.getItem('quiz_user')
     const quizUserObject = JSON.parse(localQuizUser)
-     //local storage to client data
-     //JSON parse makes json into an object
+    //local storage to client data
+    //JSON parse makes json into an object
 
     const navigate = useNavigate()
     //useNavigate to return function that allows navigation through thte program
@@ -118,59 +122,51 @@ export const Quizzes = () => {
         },
         []
     )
+
+    
     // callback function that fetches specific data
     //.then shows representation of response from the server
     //.then responds with the request
-    useEffect(
-        () => {
-            fetch(`http://localhost:8088/completedQuizzes`)
-                .then(response => response.json())
-                .then((completedQuizzes) => {
-                    setQuizzes(completedQuizzes)
-                    // console.log("Initial state of tickets", tickets) // View the initial state of tickets
-                })
-            // When this array is empty, you are observing initial component state
-        },
-        []
-    )
+
     //useEffect for matching the quiz.userId to users.id then setting the userResult/results(array)/or nothing
 
-    useEffect(
-        () => {
-            if (quizzes) {
-                const userQuizzes = quizzes.filter(quiz => quiz.userId === quizUserObject.id)
-                setUserPastScores(userQuizzes)
-            }
-        },
-        [quizzes]
-    )
+    // useEffect(
+    //     () => {
+    //         if (quizzes) {
+    //             const userQuizzes = quizzes.filter(quiz => quiz.userId === quizUserObject.id)
+    //             setUserPastScores(userQuizzes)
+    //         }
+    //     },
+    //     [quizzes]
+    // )
 
     //invoked by use effect that is observing toggle state
 
-    const handleSaveButtonClick = () => {
-        console.log('you clicked the button')
-        // TODO: Create the object to be saved to the API
-        const quizToSendToAPI = {
-            userId: quizUserObject.id,
-            userResult: average,
-            timestamp: Date.now()
-        }
-    //client makes request and describes what action to be performed with
-    //http methods like POST DELETE GET PUT
-        return fetch(`http://localhost:8088/completedQuizzes`, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            //converts javascript to JSON string  
-            body: JSON.stringify(quizToSendToAPI)
-        })
-            .then(response => response.json())
-            .then(() => {
-                navigate('/quizzes')
-                // TODO: Perform the fetch() to POST the object to the API
-            })
-    }
+    // const handleSaveButtonClick = () => {
+    //     // TODO: Create the object to be saved to the API
+    //     const quizToSendToAPI = {
+    //         userId: quizUserObject.id,
+    //         userResult: average,
+    //         timestamp: Date.now()
+    //     }
+    //     //client makes request and describes what action to be performed with
+    //     //http methods like POST DELETE GET PUT
+    //     return fetch(`http://localhost:8088/completedQuizzes`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         //converts javascript to JSON string  
+    //         body: JSON.stringify(quizToSendToAPI)
+    //     })
+    //         .then(response => response.json())
+    //         .then(() => {
+    //             navigate('/quizzes')
+    //             setToggle(!toggle)
+    //             setSave(true)
+    //             // TODO: Perform the fetch() to POST the object to the API
+    //         })
+    // }
 
     //function that takes current value onCLICK save that new value in array in a conditional
     //once 5 values, set this to a value selection state, once this is set
@@ -178,11 +174,25 @@ export const Quizzes = () => {
 
     useEffect(
         () => {
-            handleSaveButtonClick()
+            getAverageScore()
         },
-        [toggle]
+        [save]
     )
-    //functions to randomize photo selection
+
+   const counts = () => {
+    let plus= (count + 1)
+    setCount(plus)
+}
+
+useEffect(
+    () => {
+        
+        setUserChoice(value)
+        
+    },
+    [count]
+)
+
 
     const getRandomImgObject = (array) => {
         const randomObject = array[Math.floor(Math.random() * array.length)];
@@ -255,17 +265,13 @@ export const Quizzes = () => {
             Math.abs(value - randomImageObjFour?.yearTaken) +
             Math.abs(value - randomImageObjFive?.yearTaken)
         let result = sum / 5
-        setAverage(result)
+        setAverage(Math.round(result))
     }
-    
+
+
     //useEffect that observes toggle variable state change
     //invokes the getaveragescore function
-    useEffect(
-        () => {
-            getAverageScore()
-        },
-        [toggle]
-    )
+
 
     //function using state to refresh quiz
     const handleRefresh = () => {
@@ -282,132 +288,137 @@ export const Quizzes = () => {
 
         <h2>HelloYesterday</h2>
         <div>What Year Was This?</div>
-
-        <>
-            <img src={randomImageObj?.imgLink} onClick={randomImageObj?.photoSummary} alt="photo" />
-            {!toggle && (
-                <div>
-                    <RangeSlider
-                        step={1.0}
-                        min={1850}
-                        max={2022}
-                        value={value}
-                        onChange={e => setValue(e.target.value)}
-                    />
-                </div>
-            )}
-        </>
-        <>
-            <img src={randomImageObjTwo?.imgLink} onClick={randomImageObjTwo?.photoSummary} alt="photo" />
-            {!toggle && (
-                <div>
-
-                    <RangeSlider
-                        step={1.0}
-                        min={1850}
-                        max={2022}
-                        value={valueTwo}
-                        onChange={e => setValueTwo(e.target.value)}
-                    />
-                </div>
-            )}
-        </>
-        <>
-            <img src={randomImageObjThree?.imgLink} onClick={randomImageObjThree?.photoSummary} alt="photo" />
-            {!toggle && (
-                <div>
-
-                    <RangeSlider
-                        step={1.0}
-                        min={1850}
-                        max={2022}
-                        value={valueThree}
-                        onChange={e => setValueThree(e.target.value)}
-                    />
-                </div>
-            )}
-        </><>
-            <img src={randomImageObjFour?.imgLink} onClick={randomImageObjFour?.photoSummary} alt="photo" />
-            {!toggle && (
-                <div>
-                    <RangeSlider
-                        step={1.0}
-                        min={1850}
-                        max={2022}
-                        value={valueFour}
-                        onChange={e => setValueFour(e.target.value)}
-                    />
-                </div>
-            )}
-        </>
-        <>
-            <img src={randomImageObjFive?.imgLink} onClick={randomImageObjFive?.photoSummary} alt="photo" />
-            {!toggle && (
-                <div>
-
-                    <RangeSlider
-                        step={1.0}
-                        min={1850}
-                        max={2022}
-                        value={valueFive}
-                        onChange={e => setValueFive(e.target.value)}
-                    />
-                </div>
-            )}
-        </>
-
-        {!toggle && (
-            <button onClick={() => { setToggle(!toggle) }}>Submit</button>
-        )}
-
-        {toggle && (
+        {count === 0 && (
             <>
-                <div>Photo description </div>
-                {randomImageObj.photoSummary}
-                <div>Your Choice</div>
 
-                <div>{value}</div>
-                <div>{valueTwo}</div>
-                <div>{valueThree}</div>
-                <div>{valueFour}</div>
-                <div>{valueFive}</div>
-
-                <div> Years Difference </div>
-                <div>{Math.abs(value - randomImageObj?.yearTaken)}</div>
-                <div>{Math.abs(value - randomImageObjTwo?.yearTaken)}</div>
-                <div>{Math.abs(value - randomImageObjThree?.yearTaken)}</div>
-                <div>{Math.abs(value - randomImageObjFour?.yearTaken)}</div>
-                <div>{Math.abs(value - randomImageObjFive?.yearTaken)}</div>
-
-                <div>Year Taken</div>
-                <div>{randomImageObj.yearTaken}</div>
-                <div>{randomImageObjTwo.yearTaken}</div>
-                <div>{randomImageObjTwo.yearTaken}</div>
-                <div>{randomImageObjTwo.yearTaken}</div>
-                <div>{randomImageObjTwo.yearTaken}</div>
-                
-                <div>Your Score</div>
-                <div>{average}</div>
-                <div>Your Past Scores</div>
-                {
-                    userPastScores.map(
-                        (score) => {
-                            return <section className='score'>
-                                <div>{score.userResult}</div>
-                            </section>
-                        }
-                    )
-                }
-                <button onClick={() => { handleRefresh() }} className="btn btn-primary">Try Quiz Again</button>
-                <button onClick={()=> navigate('/')} className="btn btn-primary">Back To Start</button>
-                <div className="navbar__item navbar__logout">
-                    <Link className="navbar__link" to="/login" onClick={() => {
-                        localStorage.removeItem("quiz_user")
-                        navigate("/", { replace: true })
-                    }}>Logout</Link>
-                </div>
+                <img src={randomImageObj?.imgLink} onClick={randomImageObj?.photoSummary} alt="photo" />
+                {!toggle && (
+                    <div>
+                        <RangeSlider
+                            step={1.0}
+                            min={1850}
+                            max={2022}
+                            value={value}
+                            onChange={e => setValue(e.target.value)}
+                        />
+                    </div>
+                )}
             </>
         )}
-    </>
+
+        {count === 1 && (
+            <>
+                <img src={randomImageObjTwo?.imgLink} onClick={randomImageObjTwo?.photoSummary} alt="photo" />
+                {!toggle && (
+                    <div>
+
+                        <RangeSlider
+                            step={1.0}
+                            min={1850}
+                            max={2022}
+                            value={valueTwo}
+                            onChange={e => setValueTwo(e.target.value)}
+                        />
+                    </div>
+                )}
+            </>
+        )}
+        <>
+            {count === 2 && (
+                <>
+                    <img src={randomImageObjThree?.imgLink} onClick={randomImageObjThree?.photoSummary} alt="photo" />
+                    {!toggle && (
+                        <div>
+
+                            <RangeSlider
+                                step={1.0}
+                                min={1850}
+                                max={2022}
+                                value={valueThree}
+                                onChange={e => setValueThree(e.target.value)}
+                            />
+                        </div>
+                    )}
+                </>
+            )}
+            {count === 3 && (
+                <>
+                    <img src={randomImageObjFour?.imgLink} onClick={randomImageObjFour?.photoSummary} alt="photo" />
+                    {!toggle && (
+                        <div>
+                            <RangeSlider
+                                step={1.0}
+                                min={1850}
+                                max={2022}
+                                value={valueFour}
+                                onChange={e => setValueFour(e.target.value)}
+                            />
+                        </div>
+                    )}
+                </>
+            )}
+            {count === 4 && (
+                <>
+                    <img src={randomImageObjFive?.imgLink} onClick={randomImageObjFive?.photoSummary} alt="photo" />
+                    {!toggle && (
+                        <div>
+
+                            <RangeSlider
+                                step={1.0}
+                                min={1850}
+                                max={2022}
+                                value={valueFive}
+                                onChange={e => setValueFive(e.target.value)}
+                            />
+                        </div>
+                    )}
+                </>
+            )}
+            {!toggle && (
+                <button onClick={() => { counts() }}>Submit</button>
+            )}
+
+            {toggle && (
+                <>
+                    <div>Photo description </div>
+                    {randomImageObj.photoSummary}
+                    <div>Your Choice</div>
+
+                    <div>{value}</div>
+                    <div>{valueTwo}</div>
+                    <div>{valueThree}</div>
+                    <div>{valueFour}</div>
+                    <div>{valueFive}</div>
+
+                    <div> Years Difference </div>
+                    <div>{Math.abs(value - randomImageObj?.yearTaken)}</div>
+                    <div>{Math.abs(value - randomImageObjTwo?.yearTaken)}</div>
+                    <div>{Math.abs(value - randomImageObjThree?.yearTaken)}</div>
+                    <div>{Math.abs(value - randomImageObjFour?.yearTaken)}</div>
+                    <div>{Math.abs(value - randomImageObjFive?.yearTaken)}</div>
+
+                    <div>Year Taken</div>
+                    <div>{randomImageObj.yearTaken}</div>
+                    <div>{randomImageObjTwo.yearTaken}</div>
+                    <div>{randomImageObjThree.yearTaken}</div>
+                    <div>{randomImageObjFour.yearTaken}</div>
+                    <div>{randomImageObjFive.yearTaken}</div>
+
+                    <div>Your Score</div>
+                    <div>{average}</div>
+
+                    <button onClick={() => { handleRefresh() }} className="btn btn-primary">Try Quiz Again</button>
+                    <button onClick={() => navigate('/')} className="btn btn-primary">Back To Start</button>
+                    <button onClick={() => navigate('/pastscores')} className="btn btn-primary">See Past Scores</button>
+                    <div className="navbar__item navbar__logout">
+                        <Link className="navbar__link" to="/login" onClick={() => {
+                            localStorage.removeItem("quiz_user")
+                            navigate("/", { replace: true })
+                        }}>Logout</Link>
+                    </div>
+                </>
+            )}
+        </>
+        </>
 }
 // //coult return an array of 5 photo objetcs, map, 

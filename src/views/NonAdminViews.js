@@ -3,6 +3,7 @@ import { Instructions } from "../components/instructions/Instructions"
 import { useNavigate } from "react-router-dom"
 //import { Choices } from "../components/scores/Choices"
 import { Quizzes } from "../components/quizzes/Quizzes"
+import { PastScores } from "../components/pastScores/PastScores"
 
 export const NonAdminViews = () => {
     const navigate = useNavigate()
@@ -25,6 +26,7 @@ export const NonAdminViews = () => {
             </Route>
             <Route path="instructions" element={<Instructions />} />
             <Route path="quizzes" element={<Quizzes />} />
+            <Route path="pastscores" element={<PastScores />} />
             </Routes>
         </>
     )
